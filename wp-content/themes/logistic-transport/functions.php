@@ -42,6 +42,78 @@ function logistic_transport_setup() {
 	*/
 	add_theme_support( 'post-formats', array('image','video','gallery','audio',) );
 
+	/* Selective refresh for widgets */
+	add_theme_support( 'customize-selective-refresh-widgets' );
+
+	/* Starter Content */
+	add_theme_support( 'starter-content', array(
+		'widgets' => array(
+			'sidebar-1' => array(
+				'text_business_info',
+				'search',
+				'text_about',
+			),
+			'sidebar-2' => array(
+				'text_business_info',
+			),
+			'sidebar-3' => array(
+				'text_about',
+				'search',
+			),
+			'footer-1' => array(
+				'text_about',
+			),
+			'footer-2' => array(
+				'archives',
+			),
+			'footer-3' => array(
+				'text_business_info',
+			),
+			'footer-4' => array(
+				'search',
+			),
+		),
+
+		'posts' => array(
+			'home',
+			'about' => array(
+				'thumbnail' => '{{image-espresso}}',
+			),
+			'contact' => array(
+				'thumbnail' => '{{image-coffee}}',
+			),
+			'blog' => array(
+				'thumbnail' => '{{image-coffee}}',
+			),
+		),
+
+		'theme_mods' => array(
+			'logistic_transport_call' => __('9874563210', 'logistic-transport' ),
+			'logistic_transport_mail' => __('example@gmail.com', 'logistic-transport' ),
+			'logistic_transport_time' => __('Mon to Fri 8:00am-5:00pm', 'logistic-transport' ),
+			'logistic_transport_request_btn_text' => __('Request A Rate', 'logistic-transport' ),
+			'logistic_transport_request_btn_url' => '#',
+			'logistic_transport_facebook_url' => 'www.facebook.com',
+			'logistic_transport_twitter_url' => 'www.twitter.com',
+			'logistic_transport_google_url' => 'www.googleplus.com',
+			'logistic_transport_linkdin_url' => 'www.linkedin.com',
+			'logistic_transport_youtube_url' => 'www.youtube.com',
+			'logistic_transport_footer_copy' => __('Copyright 2018', 'logistic-transport' )
+		),
+
+		'nav_menus' => array(
+			'primary' => array(
+				'name' => __( 'Primary Menu', 'logistic-transport' ),
+				'items' => array(
+					'page_home',
+					'page_about',
+					'page_blog',
+					'page_contact',
+				),
+			),
+		),
+    ));
+
 	/*
 	 * This theme styles the visual editor to resemble the theme style,
 	 * specifically font, colors, icons, and column width.
@@ -84,45 +156,19 @@ function logistic_transport_widgets_init() {
 		'after_title'   => '</h3>',
 	) );
 
-	register_sidebar( array(
-		'name'          => __( 'Footer Nav 1', 'logistic-transport' ),
-		'description'   => __( 'Appears on footer', 'logistic-transport' ),
-		'id'            => 'footer-1',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
-	) );
-
-	register_sidebar( array(
-		'name'          => __( 'Footer Nav 2', 'logistic-transport' ),
-		'description'   => __( 'Appears on footer', 'logistic-transport' ),
-		'id'            => 'footer-2',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
-	) );
-
-	register_sidebar( array(
-		'name'          => __( 'Footer Nav 3', 'logistic-transport' ),
-		'description'   => __( 'Appears on footer', 'logistic-transport' ),
-		'id'            => 'footer-3',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
-	) );
-
-	register_sidebar( array(
-		'name'          => __( 'Footer Nav 4', 'logistic-transport' ),
-		'description'   => __( 'Appears on footer', 'logistic-transport' ),
-		'id'            => 'footer-4',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
-	) );
+	//Footer widget areas
+	$widget_areas = get_theme_mod('logistic_transport_footer_widget_layout', '4');
+	for ($i=1; $i<=$widget_areas; $i++) {
+		register_sidebar( array(
+			'name'          => __( 'Footer Nav ', 'logistic-transport' ) . $i,
+			'id'            => 'footer-' . $i,
+			'description'   => '',
+			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</aside>',
+			'before_title'  => '<h3 class="widget-title">',
+			'after_title'   => '</h3>',
+		) );
+	}
 }
 add_action( 'widgets_init', 'logistic_transport_widgets_init' );
 
@@ -442,7 +488,7 @@ function logistic_transport_string_limit_words($string, $word_limit) {
 }
 
 // URL DEFINES
-define('LOGISTIC_TRANSPORT_THEME_URL','https://www.themescaliber.com/themes/free-logistics-wordpress-theme/');
+define('LOGISTIC_TRANSPORT_THEME_URL',__('https://www.themescaliber.com/themes/free-logistics-wordpress-theme/', 'logistic-transport'));
 function logistic_transport_credit_link() {
     echo "<a href=".esc_url(LOGISTIC_TRANSPORT_THEME_URL)." target='_blank'>".esc_html__('Transport WordPress Theme','logistic-transport')."</a>";
 }

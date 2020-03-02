@@ -8,29 +8,60 @@
  */
 ?>
     <footer role="contentinfo">
+        <?php //Set widget areas classes based on user choice
+            $widget_areas = get_theme_mod('logistic_transport_footer_widget_layout', '4');
+            if ($widget_areas == '3') {
+                $cols = 'col-lg-4 col-md-4';
+            } elseif ($widget_areas == '4') {
+                $cols = 'col-lg-3 col-md-3';
+            } elseif ($widget_areas == '2') {
+                $cols = 'col-lg-6 col-md-6';
+            } else {
+                $cols = 'col-lg-12 col-md-12';
+            }
+        ?>
         <div class="footertown">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-md-3">
-                        <?php dynamic_sidebar('footer-1');?>
-                    </div>
-                    <div class="col-lg-3 col-md-3">
-                        <?php dynamic_sidebar('footer-2');?>
-                    </div>
-                    <div class="col-lg-3 col-md-3">
-                        <?php dynamic_sidebar('footer-3');?>
-                    </div>
-                    <div class="col-lg-3 col-md-3">
-                        <?php dynamic_sidebar('footer-4');?>
-                    </div>        
+                    <?php if ( is_active_sidebar( 'footer-1' ) ) : ?>
+                      <div class="sidebar-column <?php echo esc_attr( $cols ); ?>">
+                        <?php dynamic_sidebar( 'footer-1'); ?>
+                      </div>
+                    <?php endif; ?> 
+                    <?php if ( is_active_sidebar( 'footer-2' ) ) : ?>
+                      <div class="sidebar-column <?php echo esc_attr( $cols ); ?>">
+                        <?php dynamic_sidebar( 'footer-2'); ?>
+                      </div>
+                    <?php endif; ?> 
+                    <?php if ( is_active_sidebar( 'footer-3' ) ) : ?>
+                      <div class="sidebar-column <?php echo esc_attr( $cols ); ?>">
+                        <?php dynamic_sidebar( 'footer-3'); ?>
+                      </div>
+                    <?php endif; ?> 
+                    <?php if ( is_active_sidebar( 'footer-4' ) ) : ?>
+                      <div class="sidebar-column <?php echo esc_attr( $cols ); ?>">
+                        <?php dynamic_sidebar( 'footer-4'); ?>
+                      </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
         <div id="footer">
         	<div class="container">
-                <p><?php echo esc_html(get_theme_mod('logistic_transport_footer_copy',__('Copyright 2018 -','logistic-transport'))); ?> <?php logistic_transport_credit_link(); ?></p>
+                <p><?php echo esc_html(get_theme_mod('logistic_transport_footer_copy',__('Copyright 2018','logistic-transport'))); ?> <?php logistic_transport_credit_link(); ?></p>
             </div>
         </div>
+
+        <?php if( get_theme_mod( 'logistic_transport_show_back_to_top',true) != '') { ?>
+            <?php $scroll_lay = get_theme_mod( 'logistic_transport_back_to_top_alignment','Right');
+                if($scroll_lay == 'Left'){ ?>
+                   <a href="#" class="scrollup left"><span><?php esc_html_e('Back to Top', 'logistic-transport'); ?><i class="fas fa-arrow-right"></i></span><span class="screen-reader-text"><?php esc_html_e('Back to Top', 'logistic-transport'); ?></span></a>
+                <?php }else if($scroll_lay == 'Center'){ ?>
+                  <a href="#" class="scrollup center"><span><?php esc_html_e('Back to Top', 'logistic-transport'); ?><i class="fas fa-arrow-right"></i></span><span class="screen-reader-text"><?php esc_html_e('Back to Top', 'logistic-transport'); ?></span></a>
+                <?php }else{ ?>
+                  <a href="#" class="scrollup right"><span><?php esc_html_e('Back to Top', 'logistic-transport'); ?><i class="fas fa-arrow-right"></i></span><span class="screen-reader-text"><?php esc_html_e('Back to Top', 'logistic-transport'); ?></span></a>
+            <?php }?>
+        <?php }?>
         <?php wp_footer(); ?>
     </footer>
 </body>

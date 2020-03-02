@@ -18,6 +18,8 @@
 </head>
 
 <body <?php body_class(); ?> class="main-bodybox">
+	<?php wp_body_open(); ?>
+	
 	<header role="banner">
 		<a class="screen-reader-text skip-link" href="#main"><?php esc_html_e( 'Skip to content', 'logistic-transport' ); ?><span class="screen-reader-text"><?php esc_html_e( 'Skip to content ', 'logistic-transport' );?></span></a>
 		<div id="header">

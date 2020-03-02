@@ -3,8 +3,8 @@ Theme Name: Logistic Transport
 Theme URI: https://www.themescaliber.com/themes/free-logistics-wordpress-theme/
 Author: ThemesCaliber
 Author URI: https://www.themescaliber.com/
-Description: Logistics Transport is a smart, dynamic, reliable, robust and beautiful transport and logistics WordPress theme. It is made for transportation companies, packers and movers, logistic services, delivery and shipping companies, freight service provider, cargo hubs, shipment services, warehousing and carrier services. It proves to be the best skin to provide a professional and interactive design throughout the website, never disappointing you with its performance and the vast collection of options it has to design the website easily. It has thoughtfully used call to action buttons to convert normal visitors to potential customers. This transport WordPress theme is readily responsive and cross-browser compatible. It has a good SEO to boost your sales by driving maximum traffic towards your website. It provides a great scope of customization through theme customizer where you can change its colour, background, logo, menu, header and footer style with utmost ease without writing a single line of code. Parallax scrolling background just adds to the beauty of this theme. This retina ready theme gives crisp look of images and fonts. Logistics Transport has many custom post types like gallery, testimonial section, subscription form, recent blogs, latest news and more. It is feathery light which ensures its speedy loading. Demo: https://themescaliber.com/logistic-transport-lite/
-Version: 0.3.8
+Description: Logistics Transport is a smart, dynamic, reliable, robust and beautiful transport and logistics WordPress theme. It is made for transportation companies, packers and movers, logistic services, delivery and shipping companies, freight service provider, cargo hubs, shipment services, warehousing and carrier services. It proves to be the best skin to provide a professional and interactive design throughout the website, never disappointing you with its performance and the vast collection of options it has to design the website easily. You can translate this theme into different languages such as Arabic, German, Spanish, French, Italian, Russian, Turkish and Chinese. Demo: https://themescaliber.com/logistic-transport-lite/
+Version: 0.4
 license: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl.html
 Text Domain: logistic-transport
@@ -765,6 +765,39 @@ section h5{
 .text-center{
   text-align: center!important;
 }
+
+/* Back to top button css */
+.scrollup {
+  color: #00cdfc;
+  position: fixed;
+  display: none;
+  bottom: 108px;
+  right: 0;
+  margin:0;
+  font-size: 18px;
+  font-weight: 600;
+  transform: rotate(-90deg);
+  text-shadow: 1px 1px #000;
+}
+.scrollup.left{
+  left: 0;
+  right: auto;
+}
+.scrollup.center{
+  left: 25%;
+  right: 25%;
+}
+.scrollup:focus,
+.scrollup:hover{
+  color: #00cdfc;
+}
+.scrollup span {
+  display: inline-block;
+}
+.scrollup i{
+  margin-left: 10px;
+}
+
 /* Footer Section */
 .footertown input.search-field {
   padding: 8px;
@@ -863,6 +896,9 @@ input[type="submit"] {
 }
 #footer p a{
   color:#fff;
+}
+.footertown .woocommerce-product-search input[type="search"]{
+  border: 1px solid #fff !important;
 }
 .footertown a:focus,
 .footertown input:focus,
@@ -1217,6 +1253,7 @@ a.shipping-calculator-button {
 }
 #slider .carousel-control-next, #slider .carousel-control-prev{
   opacity: 1;
+  width: 10%;
 }
 .carousel-control-next-icon, .carousel-control-prev-icon{
   width: auto;

@@ -12,6 +12,24 @@
  */
 function logistic_transport_customize_register( $wp_customize ) {
 
+	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
+	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
+
+	$wp_customize->selective_refresh->add_partial(
+		'blogname',
+		array(
+			'selector'        => '.site-title a',
+			'render_callback' => 'logistic_transport_customize_partial_blogname',
+		)
+	);
+	$wp_customize->selective_refresh->add_partial(
+		'blogdescription',
+		array(
+			'selector'        => '.site-description',
+			'render_callback' => 'logistic_transport_customize_partial_blogdescription',
+		)
+	);
+
 	//add home page setting pannel
 	$wp_customize->add_panel( 'logistic_transport_panel_id', array(
 	    'priority' => 10,
@@ -235,7 +253,7 @@ function logistic_transport_customize_register( $wp_customize ) {
 		'sanitize_callback'	=> 'sanitize_hex_color'
 	));
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'logistic_transport_h1_color', array(
-		'label' => __('H1 Color', 'logistic-transport'),
+		'label' => __('h1 Color', 'logistic-transport'),
 		'section' => 'logistic_transport_typography',
 		'settings' => 'logistic_transport_h1_color',
 	)));
@@ -249,7 +267,7 @@ function logistic_transport_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 	    'logistic_transport_h1_font_family', array(
 	    'section'  => 'logistic_transport_typography',
-	    'label'    => __( 'H1 Fonts','logistic-transport'),
+	    'label'    => __( 'h1 Fonts','logistic-transport'),
 	    'type'     => 'select',
 	    'choices'  => $font_array,
 	));
@@ -260,7 +278,7 @@ function logistic_transport_customize_register( $wp_customize ) {
 		'sanitize_callback'	=> 'sanitize_text_field'
 	));
 	$wp_customize->add_control('logistic_transport_h1_font_size',array(
-		'label'	=> __('H1 Font Size','logistic-transport'),
+		'label'	=> __('h1 Font Size','logistic-transport'),
 		'section'	=> 'logistic_transport_typography',
 		'setting'	=> 'logistic_transport_h1_font_size',
 		'type'	=> 'text'
@@ -501,6 +519,14 @@ function logistic_transport_customize_register( $wp_customize ) {
 		'panel' => 'logistic_transport_panel_id',
 	));
 
+	$wp_customize->selective_refresh->add_partial(
+		'logistic_transport_facebook_url',
+		array(
+			'selector'        => '.social-media',
+			'render_callback' => 'logistic_transport_customize_partial_logistic_transport_facebook_url',
+		)
+	);
+
 	$wp_customize->add_setting('logistic_transport_facebook_url',array(
 		'default'	=> '',
 		'sanitize_callback'	=> 'esc_url_raw'
@@ -563,6 +589,14 @@ function logistic_transport_customize_register( $wp_customize ) {
 		'panel' => 'logistic_transport_panel_id',
 	));
 
+	$wp_customize->selective_refresh->add_partial(
+		'logistic_transport_topbar_hide',
+		array(
+			'selector'        => '.topbar',
+			'render_callback' => 'logistic_transport_customize_partial_logistic_transport_topbar_hide',
+		)
+	);
+
 	//Show /Hide Topbar
 	$wp_customize->add_setting( 'logistic_transport_topbar_hide',array(
 		'default' => 'true',
@@ -617,6 +651,14 @@ function logistic_transport_customize_register( $wp_customize ) {
 		'type'	=> 'text'
 	));
 
+	$wp_customize->selective_refresh->add_partial(
+		'logistic_transport_request_btn_text',
+		array(
+			'selector'        => '.request-btn a',
+			'render_callback' => 'logistic_transport_customize_partial_logistic_transport_request_btn_text',
+		)
+	);
+
 	$wp_customize->add_setting('logistic_transport_request_btn_text',array(
 		'default'	=> '',
 		'sanitize_callback'	=> 'sanitize_text_field'
@@ -645,6 +687,14 @@ function logistic_transport_customize_register( $wp_customize ) {
 		'priority'   => null,
 		'panel' => 'logistic_transport_panel_id'
 	) );
+
+	$wp_customize->selective_refresh->add_partial(
+		'logistic_transport_slider_hide_show',
+		array(
+			'selector'        => '#slider .inner_carousel h1',
+			'render_callback' => 'logistic_transport_customize_partial_logistic_transport_slider_hide_show',
+		)
+	);
 
 	$wp_customize->add_setting('logistic_transport_slider_hide_show',array(
        'default' => 'true',
@@ -677,6 +727,14 @@ function logistic_transport_customize_register( $wp_customize ) {
 		'panel' => 'logistic_transport_panel_id',
 	));	
 
+	$wp_customize->selective_refresh->add_partial(
+		'logistic_transport_services_category',
+		array(
+			'selector'        => '#services .service-box',
+			'render_callback' => 'logistic_transport_customize_partial_logistic_transport_services_category',
+		)
+	);
+
 	$categories = get_categories();
 		$cat_posts = array();
 			$i = 0;
@@ -706,6 +764,14 @@ function logistic_transport_customize_register( $wp_customize ) {
 		'title'	=> __('About Section','logistic-transport'),
 		'panel' => 'logistic_transport_panel_id',
 	));
+
+	$wp_customize->selective_refresh->add_partial(
+		'logistic_transport_discover_post',
+		array(
+			'selector'        => '#about h2',
+			'render_callback' => 'logistic_transport_customize_partial_logistic_transport_discover_post',
+		)
+	);
 
 	$args = array('numberposts' => -1);
 	$post_list = get_posts($args);
@@ -763,10 +829,68 @@ function logistic_transport_customize_register( $wp_customize ) {
 
 	//Footer
 	$wp_customize->add_section('logistic_transport_footer_section',array(
-		'title'	=> __('Copyright','logistic-transport'),
+		'title'	=> __('Footer Section','logistic-transport'),
 		'priority'	=> null,
 		'panel' => 'logistic_transport_panel_id',
 	));
+
+	$wp_customize->selective_refresh->add_partial(
+		'logistic_transport_show_back_to_top',
+		array(
+			'selector'        => '.scrollup',
+			'render_callback' => 'logistic_transport_customize_partial_logistic_transport_show_back_to_top',
+		)
+	);
+
+	$wp_customize->add_setting('logistic_transport_show_back_to_top',array(
+        'default' => 'true',
+        'sanitize_callback'	=> 'sanitize_text_field'
+	));
+	$wp_customize->add_control('logistic_transport_show_back_to_top',array(
+     	'type' => 'checkbox',
+      	'label' => __('Show/Hide Back to Top Button','logistic-transport'),
+      	'section' => 'logistic_transport_footer_section',
+	));
+
+	$wp_customize->add_setting('logistic_transport_back_to_top_alignment',array(
+        'default' => __('Right','logistic-transport'),
+        'sanitize_callback' => 'logistic_transport_sanitize_choices'
+	));
+	$wp_customize->add_control('logistic_transport_back_to_top_alignment',array(
+        'type' => 'select',
+        'label' => __('Back to Top Button Alignment','logistic-transport'),
+        'section' => 'logistic_transport_footer_section',
+        'choices' => array(
+            'Left' => __('Left','logistic-transport'),
+            'Right' => __('Right','logistic-transport'),
+            'Center' => __('Center','logistic-transport'),
+        ),
+	) );
+
+	$wp_customize->add_setting('logistic_transport_footer_widget_layout',array(
+        'default'           => '4',
+        'sanitize_callback' => 'logistic_transport_sanitize_choices',
+    ));
+    $wp_customize->add_control('logistic_transport_footer_widget_layout',array(
+        'type'        => 'radio',
+        'label'       => __('Footer widget layout', 'logistic-transport'),
+        'section'     => 'logistic_transport_footer_section',
+        'description' => __('Select the number of widget areas you want in the footer. After that, go to Appearance > Widgets and add your widgets.', 'logistic-transport'),
+        'choices' => array(
+            '1'     => __('One', 'logistic-transport'),
+            '2'     => __('Two', 'logistic-transport'),
+            '3'     => __('Three', 'logistic-transport'),
+            '4'     => __('Four', 'logistic-transport')
+        ),
+    ));
+
+    $wp_customize->selective_refresh->add_partial(
+		'logistic_transport_footer_copy',
+		array(
+			'selector'        => '#footer p',
+			'render_callback' => 'logistic_transport_customize_partial_logistic_transport_footer_copy',
+		)
+	);
 	
 	$wp_customize->add_setting('logistic_transport_footer_copy',array(
 		'default'	=> '',
