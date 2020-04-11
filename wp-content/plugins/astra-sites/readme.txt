@@ -4,8 +4,8 @@ Donate link: https://wpastra.com/pro/
 Tags: Elementor,Beaver Builder,Templates,Gutenberg,Astra Starter Sites
 Requires at least: 4.4
 Requires PHP: 5.3
-Tested up to: 5.3
-Stable tag: 2.0.1
+Tested up to: 5.4
+Stable tag: 2.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,7 +65,7 @@ You can extend this library with premium ready-to-use website demos by purchasin
 
 = WHY PEOPLE LOVE THE ASTRA THEME? =
 
-Over 600,000+ users are empowering their websites with Astra! From beginners to industry experts, everyone is loving Astra for its performance and ease of use.
+Over 700,000+ users are empowering their websites with Astra! From beginners to industry experts, everyone is loving Astra for its performance and ease of use.
 
 = HERE ARE A FEW REASONS WHY THEY LOVE ASTRA – =
 
@@ -137,6 +137,27 @@ We are open to suggestions and would love to work on topics that our users are l
 7. Free Images by Pixabay right inside the WordPress media popup.
 
 == Changelog ==
+
+v2.2.0 - 6-April-2020
+- Improvement: Added an Update Button for un-updated plugin list popup.
+- Improvement: Used text-domain `astra-sites` to make translation ready strings.
+- Improvement: Imported all the hotlink images from Astra theme customizer settings.
+- Improvement: WP 5.4 compatibility issue.
+- Fix: The category not visible in the dropdown list from the Elementor Popup.
+
+v2.1.0 - 23-March-2020
+- New: Added `starter-templates` WP CLI command which is a new alias for WP CLI command  `astra-sites`. We can use either `starter-templates` or `astra-sites`.
+- Improvement: WordFence firewall setting breaks the site content import AJAX request.
+- Improvement: Added WordPress version 4.9 compatibility.
+- Improvement: Update needed for plugin notice now shows the list of plugins that needs to be updated.
+- Improvement: Elementor Popup for Page/Block import has a revamped UI.
+- Improvement: Now one can filter Free/Agency pages in Elementor Popup.
+- Improvement: Showing the inconsistent file permissions message.
+- Fix: Fixed issue regarding images not getting imported for Gutenberg sites.
+- Fix: Starter Template Blocks manual sync for more than 100 blocks not getting synced.
+
+v2.0.2 - 07-March-2020
+- Fix: Plugin not activated after importing from WP CLI command.
 
 v2.0.1 - 02-March-2020
 - Hot Fix: Removed wp-editor dependency.

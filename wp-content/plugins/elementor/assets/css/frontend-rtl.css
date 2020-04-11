@@ -1,4 +1,4 @@
-/*! elementor - v2.9.3 - 26-02-2020 */
+/*! elementor - v2.9.7 - 25-03-2020 */
 .dialog-widget-content {
   background-color: #fff;
   position: absolute;
@@ -3704,6 +3704,8 @@ button.swiper-pagination-bullet {
   -webkit-transition: background-color 400ms;
   -o-transition: background-color 400ms;
   transition: background-color 400ms; }
+  .elementor-slideshow__share-menu .elementor-slideshow__share-links a {
+    color: #2C2C2C; }
 
 .elementor-slideshow__share-links {
   display: block;
@@ -3712,7 +3714,6 @@ button.swiper-pagination-bullet {
   left: 67px;
   top: 60px;
   background-color: #fff;
-  color: #2C2C2C;
   -webkit-border-radius: 3px;
           border-radius: 3px;
   font-size: 16px;
@@ -3911,14 +3912,14 @@ button.swiper-pagination-bullet {
   font-style: normal; }
 
 @media (max-width: 767px) {
-  .elementor:not(.elementor-edit-area-active) .elementor-hidden-phone {
+  .elementor .elementor-hidden-phone {
     display: none; } }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-  .elementor:not(.elementor-edit-area-active) .elementor-hidden-tablet {
+  .elementor .elementor-hidden-tablet {
     display: none; } }
 
 @media (min-width: 1025px) {
-  .elementor:not(.elementor-edit-area-active) .elementor-hidden-desktop {
+  .elementor .elementor-hidden-desktop {
     display: none; } }
 /*# sourceMappingURL=frontend-rtl.css.map */
